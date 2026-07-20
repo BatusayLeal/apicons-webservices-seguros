@@ -9,6 +9,7 @@ public class ApiUserDTO {
     private Boolean activo;
 
     public ApiUserDTO() {
+        // Intentionally left blank.
     }
 
     public Long getIdUser() {

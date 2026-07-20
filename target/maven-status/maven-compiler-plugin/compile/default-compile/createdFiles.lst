@@ -2,11 +2,14 @@ com/cristianleal/apicons/models/ApiUser.class
 com/cristianleal/apicons/controllers/PageController.class
 com/cristianleal/apicons/dto/ApiRequestLogDTO.class
 com/cristianleal/apicons/dto/LoginRequestDTO.class
+com/cristianleal/apicons/services/ApiUserService.class
 com/cristianleal/apicons/ApiconsApplication.class
+com/cristianleal/apicons/services/ApiRequestLogService.class
 com/cristianleal/apicons/repositories/ApiRequestLogRepository.class
 com/cristianleal/apicons/dto/RegisterRequestDTO.class
 com/cristianleal/apicons/models/ApiRequestLog.class
 com/cristianleal/apicons/repositories/ApiUserRepository.class
+com/cristianleal/apicons/services/ApiUserService$ApiRequestException.class
 com/cristianleal/apicons/dto/SaveLogRequestDTO.class
 com/cristianleal/apicons/config/SecurityConfig.class
 com/cristianleal/apicons/dto/ApiUserDTO.class

@@ -37,6 +37,7 @@ public class ApiUser {
     private LocalDateTime updatedAt;
 
     public ApiUser() {
+        // Intentionally left blank.
     }
 
     // Getters y Setters

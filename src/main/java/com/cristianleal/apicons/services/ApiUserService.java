@@ -22,10 +22,10 @@ public class ApiUserService {
     @Transactional
     public ApiUserDTO registerLocalUser(RegisterRequestDTO request) {
         if (apiUserRepository.existsByNUser(request.getNUser())) {
-            throw new RuntimeException("El nombre de usuario ya existe");
+            throw new ApiRequestException("El nombre de usuario ya existe");
         }
         if (apiUserRepository.existsByIdMail(request.getIdMail())) {
-            throw new RuntimeException("El correo ya está registrado");
+            throw new ApiRequestException("El correo ya está registrado");
         }
 
         ApiUser user = new ApiUser();
@@ -45,5 +45,16 @@ public class ApiUserService {
         dto.setActivo(saved.getActivo());
 
         return dto;
+    }
+
+    public class ApiRequestException extends RuntimeException {
+
+        public ApiRequestException(String message) {
+            super(message);
+        }
+
+        public ApiRequestException(String message, Throwable cause) {
+             super(message, cause);
+        }
     }
 }

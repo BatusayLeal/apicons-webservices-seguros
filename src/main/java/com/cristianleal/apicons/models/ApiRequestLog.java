@@ -43,6 +43,7 @@ public class ApiRequestLog {
     private LocalDateTime createdAt;
 
     public ApiRequestLog() {
+        // Intentionally left blank.
     }
 
     // Getters y Setters

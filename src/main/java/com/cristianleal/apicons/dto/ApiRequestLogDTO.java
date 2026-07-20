@@ -18,6 +18,7 @@ public class ApiRequestLogDTO {
     private LocalDateTime createdAt;
 
     public ApiRequestLogDTO() {
+        // Intentionally left blank.
     }
 
     // Getters y Setters

@@ -20,6 +20,7 @@ public class RegisterRequestDTO {
     private String idPass;
 
     public RegisterRequestDTO() {
+        // Intentionally left blank.
     }
 
     public String getNUser() {
