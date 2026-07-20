@@ -1,6 +1,7 @@
 package com.cristianleal.apicons.services;
 
 import com.cristianleal.apicons.dto.ApiRequestLogDTO;
+import com.cristianleal.apicons.dto.SaveLogRequestDTO;
 import com.cristianleal.apicons.models.ApiRequestLog;
 import com.cristianleal.apicons.models.ApiUser;
 import com.cristianleal.apicons.repositories.ApiRequestLogRepository;
@@ -11,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -21,27 +21,24 @@ public class ApiRequestLogService {
     private final ApiUserRepository userRepository;
 
     @Transactional
-    public ApiRequestLogDTO saveLog(Long idUser, String apiName, String endpoint,
-                                    String method, String requestBody, String responseBody,
-                                    Integer statusCode, Long durationMs) {
+    public ApiRequestLogDTO saveLog(SaveLogRequestDTO request) {
 
-        ApiUser user = userRepository.findById(idUser)
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        ApiUser user = userRepository.findById(request.getIdUser())
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con ID: " + request.getIdUser()));
 
         ApiRequestLog log = ApiRequestLog.builder()
                 .user(user)
-                .externalApiName(apiName)
-                .endpoint(endpoint)
-                .httpMethod(method)
-                .requestBody(requestBody)
-                .responseBody(responseBody)
-                .statusCode(statusCode)
-                .durationMs(durationMs)
+                .externalApiName(request.getExternalApiName())
+                .endpoint(request.getEndpoint())
+                .httpMethod(request.getHttpMethod())
+                .requestBody(request.getRequestBody())
+                .responseBody(request.getResponseBody())
+                .statusCode(request.getStatusCode())
+                .durationMs(request.getDurationMs())
                 .timestamp(LocalDateTime.now())
                 .build();
 
         ApiRequestLog saved = logRepository.save(log);
-
         return toDTO(saved);
     }
 
@@ -49,14 +46,14 @@ public class ApiRequestLogService {
         return logRepository.findAllOrderByTimestampDesc()
                 .stream()
                 .map(this::toDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public List<ApiRequestLogDTO> findByApiName(String apiName) {
         return logRepository.findByApiNameOrderByTimestampDesc(apiName)
                 .stream()
                 .map(this::toDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     private ApiRequestLogDTO toDTO(ApiRequestLog log) {

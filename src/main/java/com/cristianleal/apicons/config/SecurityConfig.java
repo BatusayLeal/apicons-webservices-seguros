@@ -1,4 +1,4 @@
-package com.cristianleal.apiconfig;
+package com.cristianleal.apicons.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
