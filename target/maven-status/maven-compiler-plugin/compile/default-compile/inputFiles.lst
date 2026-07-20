@@ -4,9 +4,11 @@
 /home/clealp/Documents/Portafolio_Cris_Leal/apicons-webservices-seguros/src/main/java/com/cristianleal/apicons/dto/ApiUserDTO.java
 /home/clealp/Documents/Portafolio_Cris_Leal/apicons-webservices-seguros/src/main/java/com/cristianleal/apicons/dto/LoginRequestDTO.java
 /home/clealp/Documents/Portafolio_Cris_Leal/apicons-webservices-seguros/src/main/java/com/cristianleal/apicons/dto/RegisterRequestDTO.java
+/home/clealp/Documents/Portafolio_Cris_Leal/apicons-webservices-seguros/src/main/java/com/cristianleal/apicons/dto/SaveLogRequestDTO.java
 /home/clealp/Documents/Portafolio_Cris_Leal/apicons-webservices-seguros/src/main/java/com/cristianleal/apicons/models/ApiRequestLog.java
 /home/clealp/Documents/Portafolio_Cris_Leal/apicons-webservices-seguros/src/main/java/com/cristianleal/apicons/models/ApiUser.java
 /home/clealp/Documents/Portafolio_Cris_Leal/apicons-webservices-seguros/src/main/java/com/cristianleal/apicons/repositories/ApiRequestLogRepository.java
+/home/clealp/Documents/Portafolio_Cris_Leal/apicons-webservices-seguros/src/main/java/com/cristianleal/apicons/repositories/ApiUserRepository.java
 /home/clealp/Documents/Portafolio_Cris_Leal/apicons-webservices-seguros/src/main/java/com/cristianleal/apicons/services/ApiRequestLogService.java
 /home/clealp/Documents/Portafolio_Cris_Leal/apicons-webservices-seguros/src/main/java/com/cristianleal/apicons/services/ApiUserService.java
-/home/clealp/Documents/Portafolio_Cris_Leal/apicons-webservices-seguros/src/main/java/com/cristianleal/apicons_webservices_seguros/Apicons.java
+/home/clealp/Documents/Portafolio_Cris_Leal/apicons-webservices-seguros/src/main/java/com/cristianleal/apicons_webservices_seguros/ApiconsApplication.java
