@@ -1,3 +1,4 @@
+/home/clealp/Documents/Portafolio_Cris_Leal/apicons-webservices-seguros/src/main/java/com/cristianleal/apicons/ApiconsApplication.java
 /home/clealp/Documents/Portafolio_Cris_Leal/apicons-webservices-seguros/src/main/java/com/cristianleal/apicons/config/SecurityConfig.java
 /home/clealp/Documents/Portafolio_Cris_Leal/apicons-webservices-seguros/src/main/java/com/cristianleal/apicons/controllers/PageController.java
 /home/clealp/Documents/Portafolio_Cris_Leal/apicons-webservices-seguros/src/main/java/com/cristianleal/apicons/dto/ApiRequestLogDTO.java
@@ -11,4 +12,3 @@
 /home/clealp/Documents/Portafolio_Cris_Leal/apicons-webservices-seguros/src/main/java/com/cristianleal/apicons/repositories/ApiUserRepository.java
 /home/clealp/Documents/Portafolio_Cris_Leal/apicons-webservices-seguros/src/main/java/com/cristianleal/apicons/services/ApiRequestLogService.java
 /home/clealp/Documents/Portafolio_Cris_Leal/apicons-webservices-seguros/src/main/java/com/cristianleal/apicons/services/ApiUserService.java
-/home/clealp/Documents/Portafolio_Cris_Leal/apicons-webservices-seguros/src/main/java/com/cristianleal/apicons_webservices_seguros/ApiconsApplication.java

@@ -6,19 +6,23 @@ import com.cristianleal.apicons.models.ApiRequestLog;
 import com.cristianleal.apicons.models.ApiUser;
 import com.cristianleal.apicons.repositories.ApiRequestLogRepository;
 import com.cristianleal.apicons.repositories.ApiUserRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class ApiRequestLogService {
 
     private final ApiRequestLogRepository logRepository;
     private final ApiUserRepository userRepository;
+
+    public ApiRequestLogService(ApiRequestLogRepository logRepository, ApiUserRepository userRepository) {
+        this.logRepository = logRepository;
+        this.userRepository = userRepository;
+    }
 
     @Transactional
     public ApiRequestLogDTO saveLog(SaveLogRequestDTO request) {
@@ -26,17 +30,16 @@ public class ApiRequestLogService {
         ApiUser user = userRepository.findById(request.getIdUser())
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado con ID: " + request.getIdUser()));
 
-        ApiRequestLog log = ApiRequestLog.builder()
-                .user(user)
-                .externalApiName(request.getExternalApiName())
-                .endpoint(request.getEndpoint())
-                .httpMethod(request.getHttpMethod())
-                .requestBody(request.getRequestBody())
-                .responseBody(request.getResponseBody())
-                .statusCode(request.getStatusCode())
-                .durationMs(request.getDurationMs())
-                .timestamp(LocalDateTime.now())
-                .build();
+        ApiRequestLog log = new ApiRequestLog();
+        log.setUser(user);
+        log.setExternalApiName(request.getExternalApiName());
+        log.setEndpoint(request.getEndpoint());
+        log.setHttpMethod(request.getHttpMethod());
+        log.setRequestBody(request.getRequestBody());
+        log.setResponseBody(request.getResponseBody());
+        log.setStatusCode(request.getStatusCode());
+        log.setDurationMs(request.getDurationMs());
+        log.setTimestamp(LocalDateTime.now());
 
         ApiRequestLog saved = logRepository.save(log);
         return toDTO(saved);
@@ -46,30 +49,30 @@ public class ApiRequestLogService {
         return logRepository.findAllOrderByTimestampDesc()
                 .stream()
                 .map(this::toDTO)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public List<ApiRequestLogDTO> findByApiName(String apiName) {
         return logRepository.findByApiNameOrderByTimestampDesc(apiName)
                 .stream()
                 .map(this::toDTO)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     private ApiRequestLogDTO toDTO(ApiRequestLog log) {
-        return ApiRequestLogDTO.builder()
-                .id(log.getId())
-                .idUser(log.getUser().getIdUser())
-                .nUser(log.getUser().getNUser())
-                .externalApiName(log.getExternalApiName())
-                .endpoint(log.getEndpoint())
-                .httpMethod(log.getHttpMethod())
-                .requestBody(log.getRequestBody())
-                .responseBody(log.getResponseBody())
-                .statusCode(log.getStatusCode())
-                .durationMs(log.getDurationMs())
-                .timestamp(log.getTimestamp())
-                .createdAt(log.getCreatedAt())
-                .build();
+        ApiRequestLogDTO dto = new ApiRequestLogDTO();
+        dto.setId(log.getId());
+        dto.setIdUser(log.getUser().getIdUser());
+        dto.setNUser(log.getUser().getNUser());
+        dto.setExternalApiName(log.getExternalApiName());
+        dto.setEndpoint(log.getEndpoint());
+        dto.setHttpMethod(log.getHttpMethod());
+        dto.setRequestBody(log.getRequestBody());
+        dto.setResponseBody(log.getResponseBody());
+        dto.setStatusCode(log.getStatusCode());
+        dto.setDurationMs(log.getDurationMs());
+        dto.setTimestamp(log.getTimestamp());
+        dto.setCreatedAt(log.getCreatedAt());
+        return dto;
     }
 }

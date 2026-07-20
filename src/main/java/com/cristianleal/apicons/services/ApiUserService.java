@@ -4,17 +4,20 @@ import com.cristianleal.apicons.dto.ApiUserDTO;
 import com.cristianleal.apicons.dto.RegisterRequestDTO;
 import com.cristianleal.apicons.models.ApiUser;
 import com.cristianleal.apicons.repositories.ApiUserRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@RequiredArgsConstructor
 public class ApiUserService {
 
     private final ApiUserRepository apiUserRepository;
     private final PasswordEncoder passwordEncoder;
+
+    public ApiUserService(ApiUserRepository apiUserRepository, PasswordEncoder passwordEncoder) {
+        this.apiUserRepository = apiUserRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Transactional
     public ApiUserDTO registerLocalUser(RegisterRequestDTO request) {
@@ -25,22 +28,22 @@ public class ApiUserService {
             throw new RuntimeException("El correo ya está registrado");
         }
 
-        ApiUser user = ApiUser.builder()
-                .nUser(request.getNUser())
-                .idMail(request.getIdMail())
-                .idPass(passwordEncoder.encode(request.getIdPass()))
-                .provider("LOCAL")
-                .activo(true)
-                .build();
+        ApiUser user = new ApiUser();
+        user.setNUser(request.getNUser());
+        user.setIdMail(request.getIdMail());
+        user.setIdPass(passwordEncoder.encode(request.getIdPass()));
+        user.setProvider("LOCAL");
+        user.setActivo(true);
 
         ApiUser saved = apiUserRepository.save(user);
 
-        return ApiUserDTO.builder()
-                .idUser(saved.getIdUser())
-                .nUser(saved.getNUser())
-                .idMail(saved.getIdMail())
-                .provider(saved.getProvider())
-                .activo(saved.getActivo())
-                .build();
+        ApiUserDTO dto = new ApiUserDTO();
+        dto.setIdUser(saved.getIdUser());
+        dto.setNUser(saved.getNUser());
+        dto.setIdMail(saved.getIdMail());
+        dto.setProvider(saved.getProvider());
+        dto.setActivo(saved.getActivo());
+
+        return dto;
     }
 }
