@@ -23,6 +23,13 @@
     </properties>
 
     <dependencies>
+        <!-- H2 Database (temporal para desarrollo) -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
         <!-- Web + Thymeleaf -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -129,6 +136,20 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>21</source>
+                    <target>21</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </path>
+                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
         </plugins>
